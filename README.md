@@ -20,19 +20,47 @@ The problem: a blank folder gives Cowork no conventions. It doesn't know where o
 
 ---
 
-## 5-minute setup
+## Step 1 — Get the files onto your computer
 
-1. **Get Cowork.** Install Claude Desktop, update to the latest version, switch to **Cowork** mode in the sidebar.
-2. **Drop this folder** wherever you want your workspace to live (e.g. `~/Documents/cowork-os`).
-3. In Cowork, click **"Work in a folder"** and select this folder. Cowork is now sandboxed to it.
-4. **Prime the kernel.** First message: `Read SKILL.md and memory.md, then tell me how this workspace is set up and what playbooks are available.` Cowork loads the operating rules + your memory and confirms it understands the map. (A `SKILL.md` in the working folder is persistent context — Cowork remembers it every session.)
-5. **Make it yours.** Fill in the `[bracketed]` placeholders in `SKILL.md` (your voice, defaults) and `memory.md` (your standing facts). Five minutes here pays off every session after.
+Cowork works on files on your own machine, so the workspace folder has to live on your computer. There's no "install from a link" — you download it once, then point Cowork at it. Two ways:
 
-That's it. Drop a file in `00-inbox/` and say `triage my inbox`, or run any playbook by name.
+- **Download (no tools needed):** open [the repo on GitHub](https://github.com/aspinalljohn/cowork-os) → click the green **`Code`** button → **Download ZIP** → unzip it. You now have a `cowork-os` folder.
+- **Clone (if you use git):** `git clone https://github.com/aspinalljohn/cowork-os.git`
+
+Put the folder somewhere permanent (e.g. `~/Documents/`). This folder *is* your operating system — don't move it around after setup.
+
+## Step 2 — Make it *your* OS (name it)
+
+Out of the box it's called "Cowork OS." Make it yours — "John OS," "Bobby OS," whatever your name is. The name lives in **three** places:
+
+1. **The folder** → rename `cowork-os` to `john-os` (lowercase, hyphens, no spaces).
+2. **The Cowork project** → when you create it in Step 3, name it **`John OS`**. This is the label you'll see in the sidebar.
+3. **The kernel title** → open `SKILL.md`, change the first heading `# Cowork OS — Kernel` to `# John OS — Kernel`, and put your name under **Who I am**.
+
+> ⚠️ **Rename the project, the folder, and the titles — never the files.** `SKILL.md`, `memory.md`, `map.md`, and everything in `playbooks/` are read by their exact filenames. Renaming a *file* breaks the system; renaming your *OS* (project + folder + title) does not.
+
+## Step 3 — Set it up in Cowork
+
+1. **Get Cowork.** Install Claude Desktop, update to the latest version, switch to **Cowork** in the sidebar.
+2. **Create one project for the whole folder.** New Project → **Use an existing folder** → pick your `john-os` folder → name the project **`John OS`**. (One project for the whole workspace — *not* one per subfolder; see [Why one project](#why-one-project-not-one-per-folder) below.)
+3. **Prime the kernel.** First message: `Read SKILL.md and memory.md, then tell me how this workspace is set up and what playbooks are available.` Cowork loads the rules + your memory and confirms it understands the map. (A `SKILL.md` in the working folder is persistent context — Cowork remembers it every session.)
+
+## Step 4 — Personalize it (let Cowork do the typing)
+
+The kit ships with `[bracketed]` placeholders for your voice, defaults, and standing facts. Fill them in by hand in `SKILL.md` and `memory.md` — **or paste this into Cowork and let it interview you:**
+
+```
+Read SKILL.md and memory.md. Ask me a handful of questions to personalize this
+workspace — my name, what I do, my voice/style rules, and the channels I publish to.
+Then rename the kernel title to "<my name> OS", and fill in every [bracketed]
+placeholder in SKILL.md and memory.md with my answers. Show me the changes before saving.
+```
+
+Five minutes here pays off every session after. Then drop a file in `00-inbox/` and say `triage my inbox`, or run any playbook by name.
 
 ---
 
-## Setting it up in the Cowork app (read this first)
+## Why one project, not one per folder
 
 **Make ONE project for the whole workspace — not one per folder.**
 
