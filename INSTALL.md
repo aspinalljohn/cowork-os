@@ -60,47 +60,39 @@ git clone https://github.com/aspinalljohn/cowork-os.git
 
 ---
 
-## Step 3 — Create your Cowork project
+## Step 3 — Point Cowork at your folder
 
-A "project" in Cowork is a saved workspace pinned to the left sidebar. You are going to make **one** project that points at your whole folder.
+You are going to open your folder **once** in Cowork. There are two ways and **both work** — pick whichever your app shows:
 
-1. Open the Claude app and go to **Cowork**.
-2. Click **New Project** (look for a `+` near the project list on the left).
-3. Choose **Use an existing folder** (not "start from scratch").
-4. When it asks you to pick a folder, select the `john-os` folder you renamed in Step 2.
-5. Name the project **`John OS`** (use your real name). This is the label you will see in the sidebar.
-6. If it asks for access to read and edit files in that folder, click **Allow** (you can choose "Always allow" so it stops asking).
+- **Work in a folder:** in a Cowork chat, choose **Work in a folder** (or the folder/attach icon) and select your `john-os` folder.
+- **Project:** if your app has Projects, click **New Project** → **Use an existing folder** → pick `john-os` → name it **`John OS`**.
 
-> **Make ONE project for the whole folder. Do not make a separate project for each subfolder** (one for `00-inbox`, one for `01-projects`, and so on). Each Cowork project is sealed off with its own memory, so splitting the folder up breaks the system. One folder, one project. The README explains why in detail.
+If it asks for permission to read and edit files in that folder, click **Allow** (choose "Always allow" so it stops asking).
+
+> **One workspace for the whole folder.** Do not open a separate workspace for each subfolder (one for `00-inbox`, one for `01-projects`, and so on). Point Cowork at the top `john-os` folder and it sees everything inside automatically. The README explains why in detail.
 
 ---
 
-## Step 4 — The most important step: standing instructions + memory
+## Step 4 — Nothing to configure: it loads itself
 
-This is the step that makes the assistant actually follow the kit every time, instead of forgetting. Do not skip it.
+Here is the good news. Your folder contains a file called **`CLAUDE.md`**. Cowork **automatically reads `CLAUDE.md` at the start of every session** — you do not have to set anything up. That file tells Cowork to load the kernel (`SKILL.md`) and your facts (`memory.md`), so your OS is live the moment you open the folder.
 
-1. In your project, find the **Instructions** field (when creating the project, or click the pencil / edit icon next to the project later).
-2. Copy and paste this in, exactly:
+So Step 4 is: **do nothing.** Just make sure the `CLAUDE.md` file is sitting in the folder you opened (it ships with the kit).
 
-   > At the start of every session, read SKILL.md and memory.md in this project folder and follow them. SKILL.md is my operating kernel: how to behave, where files go, and what never to do. memory.md is my standing facts and corrections.
-
-3. Find the **Memory** toggle for the project and make sure it is turned **ON**.
-4. Save.
-
-That is it. Now every new conversation in this project starts by reading your kernel and your facts.
+> **Using a Project and want extra insurance?** Optional only: open the project's **Instructions** field and paste `At the start of every session, read CLAUDE.md and follow it`, then turn the **Memory** toggle **ON**. This is a backup — `CLAUDE.md` already does the job. If you used "Work in a folder," there is no Instructions field and you do not need one.
 
 ---
 
 ## Step 5 — Check that it worked
 
-1. Start a new conversation inside your `John OS` project.
+1. Start a conversation in your workspace.
 2. Type this and send it:
 
-   > Read SKILL.md and memory.md, then tell me how this workspace is set up and what playbooks are available.
+   > Tell me how this workspace is set up and what playbooks are available.
 
-3. It should reply describing your folders (inbox, projects, content, reviews) and listing about a dozen playbooks (inbox-triage, research-brief, weekly-review, and so on).
+3. It should reply describing your folders (inbox, projects, content, reviews) and listing about a dozen playbooks (inbox-triage, research-brief, weekly-review, and so on) — **without you having to tell it to read anything first**. That confirms `CLAUDE.md` auto-loaded.
 
-If it does that, you are installed correctly. If it does not, see [Troubleshooting](#troubleshooting).
+If it acts like it knows nothing about the folder, see [Troubleshooting](#troubleshooting).
 
 ---
 
@@ -129,6 +121,7 @@ Tip: drag your `john-os` folder into your Finder sidebar (Mac) or Quick Access (
 
 Renaming your *OS* (the project, the folder, the title inside SKILL.md) is encouraged. But these are **filenames the system reads by their exact name**. Do not rename or delete them:
 
+- `CLAUDE.md` (the loader Cowork reads first, every session)
 - `SKILL.md` (the kernel)
 - `memory.md` (your facts)
 - `map.md` (the index)
@@ -141,22 +134,22 @@ Renaming a *file* breaks things. Renaming your *OS* does not. If in doubt, leave
 ## Troubleshooting
 
 **"It does not seem to know about the playbooks or folders."**
-You probably skipped Step 4. Open the project's Instructions field, paste the standing instruction, turn the Memory toggle ON, and start a fresh conversation.
+First, just ask it once: `Read CLAUDE.md and follow it.` If that fixes it, Cowork did not auto-read the file on its own — make sure `CLAUDE.md` is actually in the folder you opened, and that you opened the top `john-os` folder (not a subfolder, and not the `.zip`). If you are using a Project, you can also paste `At the start of every session, read CLAUDE.md and follow it` into its Instructions field as a backup.
 
-**"It cannot find SKILL.md / says the folder is empty."**
-The project is pointed at the wrong folder, or at the zip instead of the unzipped folder. Re-check Step 3 and make sure you selected the `john-os` folder that contains `SKILL.md`, not the `.zip` file.
+**"It cannot find the files / says the folder is empty."**
+You pointed it at the wrong place — usually the `.zip` instead of the unzipped folder, or a subfolder. Re-check Step 3 and select the `john-os` folder that contains `CLAUDE.md` and `SKILL.md`.
 
 **"It is asking permission every time."**
 When the permission box appears, choose **Always allow** for this folder.
 
-**"A new file called `claude.md` appeared in my folder."**
-That is normal. Cowork writes some of its own memory there automatically. It works alongside your `memory.md`. Leave both in place.
+**"A new file called `claude.md` / `memory` entry appeared on its own."**
+That is normal. Cowork keeps some of its own memory in the folder automatically. It works alongside the kit's files. Leave everything in place.
 
 **"I moved the folder and now it is broken."**
-Cowork remembered the old location. Create the project again (Step 3) pointing at the folder's new location, and redo Step 4.
+Cowork remembered the old location. Open the folder again in Cowork (Step 3) at its new location.
 
 **"I want to start over."**
-Delete the Cowork project (this does not delete your files), then redo from Step 3. Your folder and its contents stay put.
+Delete the workspace/project (this does **not** delete your files), then redo from Step 3. Your folder and its contents stay put.
 
 ---
 

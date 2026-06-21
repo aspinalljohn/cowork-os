@@ -39,17 +39,16 @@ Out of the box it's called "Cowork OS." Make it yours — "John OS," "Bobby OS,"
 2. **The Cowork project** → when you create it in Step 3, name it **`John OS`**. This is the label you'll see in the sidebar.
 3. **The kernel title** → open `SKILL.md`, change the first heading `# Cowork OS — Kernel` to `# John OS — Kernel`, and put your name under **Who I am**.
 
-> ⚠️ **Rename the project, the folder, and the titles — never the files.** `SKILL.md`, `memory.md`, `map.md`, and everything in `playbooks/` are read by their exact filenames. Renaming a *file* breaks the system; renaming your *OS* (project + folder + title) does not.
+> ⚠️ **Rename the project, the folder, and the titles — never the files.** `CLAUDE.md`, `SKILL.md`, `memory.md`, `map.md`, and everything in `playbooks/` are read by their exact filenames. Renaming a *file* breaks the system; renaming your *OS* (project + folder + title) does not.
 
-## Step 3 — Set it up in Cowork
+## Step 3 — Point Cowork at the folder
 
 1. **Get Cowork.** Install Claude Desktop, update to the latest version, switch to **Cowork** in the sidebar.
-2. **Create one project for the whole folder.** New Project → **Use an existing folder** → pick your `john-os` folder → name the project **`John OS`**. (One project for the whole workspace — *not* one per subfolder; see [Why one project](#why-one-project-not-one-per-folder) below.)
-3. **Set the standing instruction + turn Memory on.** This is the step that makes the OS actually run every session. In the project's **Instructions** field, paste:
-   > `At the start of every session, read SKILL.md and memory.md in this project folder and follow them. SKILL.md is my operating kernel (how to behave, where things go, what never to do); memory.md is my standing facts and corrections.`
-   
-   Then make sure the project's **Memory** toggle is **ON**. The Instructions field is what Cowork follows on every new conversation — this is how the kernel loads automatically instead of you re-priming it each time.
-4. **Prime it once to check.** Start a conversation: `Read SKILL.md and memory.md, then tell me how this workspace is set up and what playbooks are available.` It should describe your folders and list the playbooks. If it does, the wiring works.
+2. **Open your folder in Cowork** → either **Work in a folder** and select your `john-os` folder, or create a **Project** from it (New Project → Use an existing folder). Either works. Use **one** workspace for the whole folder — *not* a separate one per subfolder ([why](#why-one-workspace-not-one-per-folder)).
+3. **That's it — it loads itself.** This folder includes a `CLAUDE.md` file, which Cowork reads automatically at the start of every session. `CLAUDE.md` tells it to load the kernel (`SKILL.md`) and your facts (`memory.md`), so the OS is live without any manual priming.
+4. **Check it worked.** Start a conversation and ask: `Tell me how this workspace is set up and what playbooks are available.` It should describe your folders and list the playbooks. If it does, you're wired.
+
+> **Optional, Projects only (extra reliability):** if you made a Project, you can also paste `At the start of every session, read CLAUDE.md and follow it` into the project's **Instructions** field and switch the **Memory** toggle **ON**. Not required — `CLAUDE.md` already handles loading — but it's a belt-and-suspenders backup.
 
 ## Step 4 — Personalize it (let Cowork do the typing)
 
@@ -66,16 +65,16 @@ Five minutes here pays off every session after. Then drop a file in `00-inbox/` 
 
 ---
 
-## Why one project, not one per folder
+## Why one workspace, not one per folder
 
-**Make ONE project for the whole workspace — not one per folder.**
+**Point Cowork at the whole folder once — don't carve it into a separate workspace per subfolder.**
 
-In Cowork, a "project" is a self-contained workspace with its *own* files, instructions, **and memory**, pinned to the left sidebar. When a project points at a folder, Cowork automatically sees every subfolder and file inside it — no file picker.
+When Cowork works in a folder (whether as a quick "Work in a folder" session or a saved Project), it automatically sees every subfolder and file inside it — no file picker. So one workspace at the root reaches everything.
 
-- **Do:** New Project → **Use an existing folder** → point it at this workspace **root** (the folder holding `SKILL.md` and `memory.md`). That one project *is* your OS. It appears once in the sidebar and reaches `00-inbox/`, `01-projects/`, `content/`, `reviews/`, everything.
-- **Don't:** make a separate project for `00-inbox/`, another for `01-projects/`, etc. Each Cowork project is an **isolated** context with its own memory — so a per-folder project can't see `SKILL.md`/`memory.md` at the root, and every cross-folder playbook breaks (inbox-triage routes inbox→projects; recall and workspace-sweep scan all folders). One workspace = one project, the same way a second brain is one vault, not eleven.
+- **Do:** point it at this folder **root** (the one holding `CLAUDE.md`, `SKILL.md`, and `memory.md`). That root *is* your OS — it reaches `00-inbox/`, `01-projects/`, `content/`, `reviews/`, everything, and `CLAUDE.md` loads the kernel automatically.
+- **Don't:** make a separate Project for `00-inbox/`, another for `01-projects/`, etc. Each Cowork **Project** is an isolated context with its own memory — a per-folder Project can't see `CLAUDE.md`/`SKILL.md`/`memory.md` at the root, so nothing loads and every cross-folder playbook breaks (inbox-triage routes inbox→projects; recall and workspace-sweep scan all folders). One workspace = one folder, the same way a second brain is one vault, not eleven.
 
-**Seeing and browsing the folders:** the sidebar shows the *project*, not a full file tree. For visual file browsing, pin the workspace root to your **Finder sidebar** — it's all plain folders on disk. For an at-a-glance index of what's where, ask Cowork to refresh `map.md` (the `workspace-sweep` playbook) and read that.
+**Seeing and browsing the folders:** the sidebar shows the workspace, not a full file tree. For visual file browsing, pin the folder root to your **Finder sidebar** — it's all plain folders on disk. For an at-a-glance index of what's where, ask Cowork to refresh `map.md` (the `workspace-sweep` playbook) and read that.
 
 ---
 
@@ -98,6 +97,8 @@ In Cowork, a "project" is a self-contained workspace with its *own* files, instr
 | `99-archive/` | Completed or dormant material. |
 | `playbooks/` | Reusable workflows, one file each. Invoke by name. |
 | `schedules/` | Cadence definitions for recurring scheduled tasks. |
+| `CLAUDE.md` | The loader Cowork auto-reads first, every session. Boots the kernel. |
+| `SKILL.md` | The kernel: identity, folder map, operating rules, voice, playbook index. |
 | `memory.md` | Your standing facts, decisions, corrections. Read every session. |
 | `map.md` | Materialized index of the workspace (the dataview replacement). |
 
@@ -113,4 +114,4 @@ Want to see it running before you set up your own? `examples/` is a filled-in wo
 - **Add a folder** → create it, then add a row to the folder map in `SKILL.md` so Cowork knows its purpose.
 - **Promote a playbook to a Cowork skill** → move it into its own folder as `SKILL.md` if your Cowork version auto-discovers nested skills.
 
-> Cowork is a fast-moving product. If your version uses a different persistent-context filename than `SKILL.md`, rename the kernel accordingly — the structure is what matters, not the filename.
+> Cowork is a fast-moving product. `CLAUDE.md` is the file it auto-reads at the start of every session — that's what boots the kernel. If a future version uses a different auto-loaded filename, rename `CLAUDE.md` accordingly (the bootstrap content is what matters). `SKILL.md` and the rest can keep their names.
