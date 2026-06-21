@@ -4,6 +4,8 @@ A clone-and-run operating system for **Claude Cowork** (Anthropic's desktop agen
 
 Built for **general knowledge work**: research, drafting, analysis, triage, reviews. Not tied to any one industry.
 
+> **New to this / not technical?** Follow the step-by-step **[INSTALL.md](INSTALL.md)** instead — it assumes zero tech experience and walks you through every click. The setup steps below are the quick version.
+
 ---
 
 ## What Cowork is (and why this exists)
@@ -43,7 +45,11 @@ Out of the box it's called "Cowork OS." Make it yours — "John OS," "Bobby OS,"
 
 1. **Get Cowork.** Install Claude Desktop, update to the latest version, switch to **Cowork** in the sidebar.
 2. **Create one project for the whole folder.** New Project → **Use an existing folder** → pick your `john-os` folder → name the project **`John OS`**. (One project for the whole workspace — *not* one per subfolder; see [Why one project](#why-one-project-not-one-per-folder) below.)
-3. **Prime the kernel.** First message: `Read SKILL.md and memory.md, then tell me how this workspace is set up and what playbooks are available.` Cowork loads the rules + your memory and confirms it understands the map. (A `SKILL.md` in the working folder is persistent context — Cowork remembers it every session.)
+3. **Set the standing instruction + turn Memory on.** This is the step that makes the OS actually run every session. In the project's **Instructions** field, paste:
+   > `At the start of every session, read SKILL.md and memory.md in this project folder and follow them. SKILL.md is my operating kernel (how to behave, where things go, what never to do); memory.md is my standing facts and corrections.`
+   
+   Then make sure the project's **Memory** toggle is **ON**. The Instructions field is what Cowork follows on every new conversation — this is how the kernel loads automatically instead of you re-priming it each time.
+4. **Prime it once to check.** Start a conversation: `Read SKILL.md and memory.md, then tell me how this workspace is set up and what playbooks are available.` It should describe your folders and list the playbooks. If it does, the wiring works.
 
 ## Step 4 — Personalize it (let Cowork do the typing)
 
