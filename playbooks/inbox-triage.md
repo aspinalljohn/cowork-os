@@ -2,11 +2,13 @@
 
 **Use when:** `00-inbox/` has accumulated raw items and you want them summarized, classified, and routed out.
 
-**Inputs:** everything currently in `00-inbox/`.
+> **"Inbox" here means the `00-inbox/` FOLDER in this workspace — not email/Gmail.** Even if an email connector is available, do not read email for this playbook unless I explicitly say "email" or "Gmail." (Email only enters through a separate scheduled email-pull task that drops messages *into* `00-inbox/` first.)
+
+**Inputs:** everything currently in the `00-inbox/` folder.
 
 ## Steps
 
-1. List every item in `00-inbox/`. For each, read enough to understand what it is.
+1. List every item in the `00-inbox/` folder. For each, read enough to understand what it is.
 2. For each item, produce a one-line summary and classify it:
    - **Reference** → durable material to keep → propose moving to `02-reference/`.
    - **Project input** → belongs to active work → propose moving into the right `01-projects/<project>/` (or a new project folder).
